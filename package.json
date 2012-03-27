@@ -1,0 +1,19 @@
+{
+  "author": "Tom Gallacher <tomgallacher23@gmail.com> (tomg.co)",
+  "name": "available",
+  "version": "0.0.1a",
+  "repository": {
+    "url": ""
+  },
+  "engines": {
+    "node": "0.6.X"
+  },
+  "main": "./server.js",
+  "dependencies": {
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  }
+}
