@@ -1,9 +1,9 @@
 {
   "author": "Tom Gallacher <tomgallacher23@gmail.com> (tomg.co)",
-  "name": "available",
+  "name": "availability",
   "version": "0.0.1a",
   "repository": {
-    "url": "git://github.com/tomgco/node-available.git"
+    "url": "git://github.com/tomgco/node-availability.git"
   },
   "engines": {
     "node": "0.6.X"
