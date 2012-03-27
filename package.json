@@ -3,7 +3,7 @@
   "name": "available",
   "version": "0.0.1a",
   "repository": {
-    "url": ""
+    "url": "git://github.com/tomgco/node-available.git"
   },
   "engines": {
     "node": "0.6.X"
