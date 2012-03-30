@@ -1,19 +1,18 @@
 {
   "author": "Tom Gallacher <tomgallacher23@gmail.com> (tomg.co)",
   "name": "availability",
-  "version": "0.0.1a",
+  "version": "0.1.0",
   "repository": {
     "url": "git://github.com/tomgco/node-availability.git"
   },
   "engines": {
     "node": "0.6.X"
   },
-  "main" : "index.js",
-  "dependencies": {
+  "main": "index.js",
+  "dependencies": {},
+  "directories": {
+    "lib": "."
   },
-  "directories" : {
-        "lib" : "."
-    },
   "devDependencies": {},
   "optionalDependencies": {},
   "scripts": {}
