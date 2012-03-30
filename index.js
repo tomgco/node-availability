@@ -6,10 +6,12 @@ exports.createServer = function(config) {
   config = config || {};
   config.port = config.port || false;
   config.host = config.host || false;
-
-  var server = net.createServer(function (socket) {
+  config.onConnection = config.onConnection || function (socket) {
     socket.pipe(socket);
-  });
+    server.emit('clientReq');
+  };
+
+  var server = net.createServer(config.onConnection);
 
   server.listen();
   return server;
@@ -22,12 +24,14 @@ exports.createClient = function(port, host, config) {
   port = port || 1337;
   host = host || '0.0.0.0';
 
-  var availabe = false
-    , self = new EventEmitter()
+  var self = new EventEmitter()
     ;
 
   function check() {
-    var client = net.connect(port, host);
+    var client = net.connect(port, host)
+      , availabe = false
+      , res = null
+      ;
 
     client.on('connect', function() {
       client.write(config.data);
@@ -35,33 +39,23 @@ exports.createClient = function(port, host, config) {
     });
 
     client.on('data', function(data) {
-      if (data.toString() === config.data) {
-        availabe = true;
-        self.emit('online', availabe);
-      } else {
-        availabe = false;
-        self.emit('error');
-      }
-      client.end();
+      availabe = true;
+      res = data.toString();
+      self.emit('online', availabe, res);
     });
 
-    client.setTimeout(1000, function() {
-      self.emit('timeout');
-      availabe = false;
-      client.end();
-    });
+    client.setTimeout(config.timeout, client.end);
 
     client.on('error', function() {
-      availabe = false;
       self.emit('online', availabe);
+      client.end();
     });
 
     client.on('end', function() {
-      self.emit('end', availabe);
-      console.log('client disconnected');
+      self.emit('end', availabe, res);
     });
   }
-
+  self.clientData = config.data;
   self.check = check;
 
   return self;

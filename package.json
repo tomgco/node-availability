@@ -8,12 +8,13 @@
   "engines": {
     "node": "0.6.X"
   },
-  "main": "./server.js",
+  "main" : "index.js",
   "dependencies": {
   },
+  "directories" : {
+        "lib" : "."
+    },
   "devDependencies": {},
   "optionalDependencies": {},
-  "scripts": {
-    "start": "node server.js"
-  }
+  "scripts": {}
 }
