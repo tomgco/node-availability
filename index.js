@@ -53,6 +53,7 @@ exports.createClient = function(port, host, config) {
 
     client.on('end', function() {
       self.emit('end', availabe, res);
+      client.end();
     });
   }
   self.clientData = config.data;
