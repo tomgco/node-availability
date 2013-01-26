@@ -29,7 +29,7 @@ exports.createClient = function(port, host, config) {
 
   function check() {
     var client = net.connect(port, host)
-      , availabe = false
+      , available = false
       , res = null
       ;
 
@@ -39,20 +39,20 @@ exports.createClient = function(port, host, config) {
     });
 
     client.on('data', function(data) {
-      availabe = true;
+      available = true;
       res = data.toString();
-      self.emit('online', availabe, res);
+      self.emit('online', available, res);
     });
 
     client.setTimeout(config.timeout, client.end);
 
     client.on('error', function() {
-      self.emit('online', availabe);
+      self.emit('online', available);
       client.end();
     });
 
     client.on('end', function() {
-      self.emit('end', availabe, res);
+      self.emit('end', available, res);
       client.end();
     });
   }
